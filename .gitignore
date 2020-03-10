@@ -1,0 +1,13 @@
+debug.log
+node_modules
+.env
+# IDEs and editors
+.idea
+.project
+
+# IDE - VSCode
+.vscode
+
+package-lock.json
+yarn.lock
+npm-debug.log
