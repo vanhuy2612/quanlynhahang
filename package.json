@@ -1,0 +1,22 @@
+{
+  "name": "quanlynhahang",
+  "version": "1.0.0",
+  "description": "Quan ly nha hang",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanhuy2612/quanlynhahang.git"
+  },
+  "author": "Huy Van",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanhuy2612/quanlynhahang/issues"
+  },
+  "homepage": "https://github.com/vanhuy2612/quanlynhahang#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
