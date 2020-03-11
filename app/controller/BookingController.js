@@ -17,8 +17,17 @@ class BookingController extends BaseController{
         if(err) return res.status(400).json({ message: "Store Booking faild"});
         return res.json(booking);
     }
-    // Thong ke theo itemID:
+    async delete(req, res, next){
+        let _id = req.params.bookingId;
 
+        let [err, booking] = await to( BookingModel.deleteMany({ }));
+        if(err) return res.status(400).json({ message: "Delete booking fail"});
+        return res.json(booking);
+    }
+    // Thong ke theo itemID:
+    async thongketheoId(req, res, next){
+        
+    }
 }
 
 module.exports = new BookingController();

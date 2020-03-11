@@ -7,8 +7,8 @@ const BaseSchema = require('./BaseSchema');
 const mTAG = 'bookings';
 const projection  = { delete: 0, __v: 0};
 const FIELDS ={
-    orderId: {type: String},
-    memberId: {type: String},
+    order: {type: mongoose.SchemaTypes.ObjectId, ref: "orders"},
+    member: {type: mongoose.SchemaTypes.ObjectId, ref: "members"},
     paymentTime: {type: Date, default: Date.now},
     insert: {
         when: { type: Date, default: Date.now },

@@ -5,5 +5,6 @@ const Router = require('express').Router();
 require('./api/api.item')(Router);
 require('./api/api.order')(Router);
 require('./api/api.booking')(Router);
+require('./api/api.user')(Router);
 
 module.exports = Router;

@@ -9,9 +9,9 @@ const projection  = { delete: 0, __v: 0};
 const FIELDS ={
     quantity : {type: Number},
     price : { type: Number},
-    itemId : { type: String},
-    userId : {type: String},
-    memberId : {type: String},
+    item : { type: mongoose.SchemaTypes.ObjectId, ref: "items"},
+    user : {type: mongoose.SchemaTypes.ObjectId, ref: "members"},
+    member : {type: mongoose.SchemaTypes.ObjectId, ref: "members"},
     timeOrder : {type: Date},
     insert: {
         when: { type: Date, default: Date.now },

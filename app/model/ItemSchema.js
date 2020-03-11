@@ -10,6 +10,7 @@ const FIELDS ={
     name : { type: String},
     price : { type: Number},
     des : { type: String},
+    orders : [{ type: Schema.Types.ObjectId, ref: "orders"}],
     insert: {
         when: { type: Date, default: Date.now },
         by: { type: Schema.ObjectId, ref: 'User' }
