@@ -6,4 +6,6 @@ module.exports = (Router) => {
     Router.delete('/api/orders/:orderId', OrderCtrl.delete);
     Router.post('/api/orders/thongketheoId', OrderCtrl.thongketheoId);
     Router.post('/api/orders/thongke', OrderCtrl.thongke);   
+    Router.post('/api/orders/thongkedacbiet', OrderCtrl.thongkedacbiet);
+    Router.post('/api/orders/orderStatiscsByItem', OrderCtrl.orderStatiscsByItem);
 }

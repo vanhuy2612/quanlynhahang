@@ -9,7 +9,10 @@ const projection  = { delete: 0, __v: 0};
 const FIELDS ={
     order: {type: mongoose.SchemaTypes.ObjectId, ref: "orders"},
     member: {type: mongoose.SchemaTypes.ObjectId, ref: "members"},
+    user: {type: mongoose.SchemaTypes.ObjectId, ref: "users"},
+    // Ngay thanh toan:
     paymentTime: {type: Date, default: Date.now},
+    
     insert: {
         when: { type: Date, default: Date.now },
         by: { type: Schema.ObjectId, ref: 'User' }
