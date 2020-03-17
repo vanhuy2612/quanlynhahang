@@ -24,7 +24,7 @@ class BookingController extends BaseController{
         if(err) return res.status(400).json({ message: "Delete booking fail"});
         return res.json(booking);
     }
-    // Get all Booking Statics by User :
+    // Get all Booking Statistic by User :
     async getAllBookingStatisticGroupByUser(req, res, next){
         let [err, booking] = await to( BookingModel.aggregate([       
             // {$lookup: {
@@ -71,7 +71,7 @@ class BookingController extends BaseController{
         if(err) return res.status(400).json({"Errors": err});
         return res.json(booking);
     }
-    // Get Booking Statics by User : 
+    // Get Booking Statistic by User : 
     async getBookingStatisticByUser(req, res, next){
         let userId = mongoose.mongo.ObjectId(req.params.userId);
 
