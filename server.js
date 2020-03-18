@@ -40,8 +40,8 @@ let ftpEasy = new EasyFtp();
 
 ftpClient.connect(configFtp);
 // note : remotePath form : dont contain /Node/
-let remotePath = '/quanlynhahang/SV/adv.mp4';
-let localPath = 'F:/Node/quanlynhahang/SV/success.mp4';
+let remotePath = '/adv.mp4';
+let localPath = 'F:/Node/quanlynhahang/public/videos/success.mp4';
 
 ftpClient.on('ready', () => {
     downloadFile(remotePath, localPath, ftpClient)
@@ -91,10 +91,6 @@ function writeToEndFile(data, remotePath, ftpClient) {
 // Download file and save file in local file system:
 function downloadFile(remotePath, localPath, ftpClient) {
     ftpClient.get(remotePath, (err, stream) => {
-        // if(err) errors = err;
-        if(!isExistFile(localPath)) fs.appendFile(localPath,"", (err) => {
-            if(err) throw err;
-        });
         stream.once('close', () => {ftpClient.end()})
         stream.pipe(fs.createWriteStream(localPath));
     })
