@@ -4,7 +4,8 @@ node_modules
 # IDEs and editors
 .idea
 .project
-
+.mp4
+.jpg
 # IDE - VSCode
 .vscode
 
