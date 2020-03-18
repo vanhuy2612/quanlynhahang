@@ -57,45 +57,37 @@ server.listen(3000, function(req, res, next) {
 })
 // Create folder: 
 function createFolder(remotePath, ftpClient) {
-    let errors = null;
     ftpClient.mkdir(remotePath,(err) => {
-        if(err) errors = err;
+        if(err) throw err;
     })
-    return errors;
 }
 // Delete folder:
-function removeFolder(remotePath, ftpClient) {
-    let errors = null;
+function removeFolder(remotePath, ftpClient) {    
     ftpClient.rmdir(remotePath,(err) => {
-        if(err) errors = err;
+        if(err) throw err;
     })
-    return errors;
 }
 // Delete file:
 function removeFile(remotePath, ftpClient) {
-    let errors = null;
     ftpClient.delete(remotePath,(err) => {
-        if(err) errors = err;
+        if(err) throw err;
     })
-    return errors;
 }
 // Write to the end of the file : 
 function writeToEndFile(data, remotePath, ftpClient) {
-    let errors = null;
     ftpClient.append(data,remotePath, (err) => {
-        if(err) errors = err;
-        
+        if(err) throw err;       
     })
-    return errors
 }
 // Download file and save file in local file system:
 function downloadFile(remotePath, localPath, ftpClient) {
     ftpClient.get(remotePath, (err, stream) => {
+        if (err) throw err;
         stream.once('close', () => {ftpClient.end()})
         stream.pipe(fs.createWriteStream(localPath));
-    })
+    });
 }
-// Upload file txt : 
+// Upload file  : 
 function uploadFile(localPath, remotePath, ftpClient){
     ftpClient.put(localPath, remotePath, (err) => {
         if(err) throw err;
