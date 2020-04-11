@@ -6,4 +6,5 @@ module.exports = (Router) => {
     Router.post('/api/bookings', BookingCtrl.store);
     Router.get('/api/bookings/getBookingStatisticByUser/:userId',BookingCtrl.getBookingStatisticByUser);
     Router.get('/api/bookings/getAllBookingStatisticGroupByUser',BookingCtrl.getAllBookingStatisticGroupByUser);
+    Router.get('/api/bookings/getIncomeOfEndDay', BookingCtrl.getIncomeOfEndDay);
 }

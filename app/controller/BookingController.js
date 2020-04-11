@@ -6,6 +6,7 @@ const ItemModel = require('../model/ItemSchema');
 const BaseController = require('./BaseController');
 const to = require('await-to-js').default;
 
+
 class BookingController extends BaseController{
     constructor(){
         super(BookingController,BookingModel);
@@ -107,6 +108,50 @@ class BookingController extends BaseController{
         ]));
         if(err) return res.status(400).json({"Errors": err});
         return res.json(result);
+    }
+    // thong ke doanh thu theo ngay:
+    async getIncomeOfEndDay(req, res, next){
+        let today = new Date();
+        let yesterday = new Date( today.setDate( today.getDate() - 1));
+        let startDay = new Date( yesterday.setHours(0,0,0,0) );
+        let endDay = new Date( yesterday.setHours(23,59,59,999) );
+
+        console.log(startDay+" "+endDay);
+
+        let [err, result] = await to( BookingModel.aggregate([
+            {$match: {
+                'paymentTime': {$gte: startDay},
+                'paymentTime': {$lte: endDay}
+            }},
+            {$lookup: {
+                from: 'orders',
+                localField: 'order',
+                foreignField: '_id',
+                as: 'order'
+            }},
+            {$unwind: "$order"},// Tách ra rồi group lại để tính total.
+            {$group: {
+                _id: '$order.item',
+                income: {
+                    $sum: {
+                        $multiply: ['$order.quantity','$order.price']
+                    }
+                }
+            }},
+            {$group: {
+                _id: null,
+                list: {$push: 
+                    {$mergeObjects: {item:"$_id",income: "$income"}}
+                },
+                total: {$sum: "$income"}
+            }},
+            {$project: {
+                list: "$list",
+                total: "$total"
+            }}
+        ]) )
+        if (err) return res.status(404).json({Errors: err,messege: "Fail to calculte Income everyday"}) 
+        return res.json({result});
     }
 }
 
