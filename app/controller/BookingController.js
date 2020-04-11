@@ -150,8 +150,9 @@ class BookingController extends BaseController{
                 total: "$total"
             }}
         ]) )
-        if (err) return res.status(404).json({Errors: err,messege: "Fail to calculte Income everyday"}) 
-        return res.json({result});
+        console.log(result);
+        if (err) return {Errors: err,messege: "Fail to calculte Income everyday"}; 
+        return result;
     }
 }
 

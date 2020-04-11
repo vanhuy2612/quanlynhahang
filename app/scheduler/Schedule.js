@@ -1,7 +1,9 @@
 'use strict'
 
-const Schedule = require('node-schedule')
+const Schedule = require('node-schedule');
 
-require('./BookingScheduler')(Schedule);
+const BookingScheduler = require('./BookingScheduler')(Schedule);
 
-module.exports = Schedule;
+module.exports = (req, res, next) => {
+    BookingScheduler();
+};
